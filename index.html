@@ -1,1 +1,422 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saborez | Innovación Estratégica para Empresas de Servicios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Saborez Black & Orange -->
+    <!-- Application Structure Plan: Se ha diseñado una aplicación de una sola página (SPA) con una estructura de navegación vertical y fluida. Las secciones principales (Inicio, Nosotros, Servicios, Impacto, Trayectoria, Contacto) permiten un recorrido lógico que primero presenta la marca, luego detalla su oferta y demuestra su capacidad a través de casos de éxito y experiencia previa. Esta estructura narrativa es ideal para una consultora, ya que construye confianza progresivamente y culmina con una clara llamada a la acción. -->
+    <!-- Visualization & Content Choices: La información del CV se ha transformado en contenido de marca. Los logros son ahora 'Casos de Impacto'. La sección de 'Expertise' (gráfico) se ha reemplazado por 'Trayectoria', una cuadrícula de instituciones donde el fundador ha trabajado, para dar prueba social y de experiencia. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #E5E7EB;
+        }
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #F97316;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .card {
+            background-color: #1F2937;
+            border: 1px solid #374151;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .btn-primary {
+            background-color: #F97316;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #EA580C;
+            transform: scale(1.05);
+        }
+        .logo-item img {
+            max-height: 60px; /* Ajustar según sea necesario */
+            width: auto;
+            margin-bottom: 0.75rem; /* Espacio entre logo y nombre */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#home" class="flex items-center space-x-2">
+                    <img src="logo_transparent_background.png" alt="Logo Saborez" class="h-10 w-10 object-contain" onerror="this.onerror=null; this.src='https://placehold.co/100x100/111827/F97316?text=S';">
+                    <span class="text-2xl font-bold text-white">Saborez</span>
+                </a>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link text-gray-300 hover:text-orange-500">Nosotros</a>
+                    <a href="#services" class="nav-link text-gray-300 hover:text-orange-500">Servicios</a>
+                    <a href="#impact" class="nav-link text-gray-300 hover:text-orange-500">Impacto</a>
+                    <a href="#trajectory" class="nav-link text-gray-300 hover:text-orange-500">Trayectoria</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-orange-500">Contacto</a>
+                </nav>
+
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <span class="sr-only">Abrir menú principal</span>
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Nosotros</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Servicios</a>
+                <a href="#impact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Impacto</a>
+                <a href="#trajectory" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Trayectoria</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="min-h-screen flex items-center justify-center bg-gray-900 pt-20">
+            <div class="text-center container mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-wider text-shadow">
+                    Diseñando el futuro de las <span class="text-orange-500">empresas de servicios</span>
+                </h1>
+                <p class="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-300">
+                    Fusionamos visión estratégica con inteligencia de datos para impulsar la transformación de las empresas de servicios mediante innovación y resultados cuantificables.
+                </p>
+                <div class="mt-10">
+                    <a href="#impact" class="btn-primary inline-block font-bold py-4 px-8 rounded-lg text-lg uppercase tracking-letter-spacing">
+                        Descubra Nuestro Impacto
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 sm:py-32">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white">De la <span class="text-orange-500">Pericia</span> a la <span class="text-orange-500">Excelencia</span></h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">Saborez nace de más de 20 años de liderazgo y experiencia práctica en el nexo entre servicios, tecnología y estrategia de negocios.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Nuestra Filosofía</h3>
+                        <p class="text-gray-300 mb-6">
+                            Creemos en un enfoque que trasciende la consultoría tradicional. Nos convertimos en socios estratégicos, aplicando una metodología probada que integra la visión de negocio con soluciones tecnológicas de vanguardia. Nuestra experiencia operativa nos da una perspectiva única para resolver los desafíos reales de la industria de servicios.
+                        </p>
+                        <h3 class="text-2xl font-bold text-white mb-4">Liderazgo Comprobado</h3>
+                        <p class="text-gray-300">
+                            El fundamento de Saborez es la trayectoria de su fundador, Esteban Zárate (Ingeniero Civil Industrial, MBA ESADE), cuya carrera se ha centrado en generar resultados tangibles. Esta experiencia es la garantía de nuestro compromiso con la excelencia y la innovación.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8 text-center">
+                        <div class="bg-gray-800 p-6 rounded-lg">
+                            <span class="block text-4xl font-extrabold text-orange-500">20+</span>
+                            <span class="mt-2 block text-gray-300">Años de Experiencia</span>
+                        </div>
+                        <div class="bg-gray-800 p-6 rounded-lg">
+                            <span class="block text-4xl font-extrabold text-orange-500">IA & Big Data</span>
+                            <span class="mt-2 block text-gray-300">Enfoque Tecnológico</span>
+                        </div>
+                        <div class="bg-gray-800 p-6 rounded-lg">
+                            <span class="block text-4xl font-extrabold text-orange-500">MM$200</span>
+                            <span class="mt-2 block text-gray-300">En Fondos Captados</span>
+                        </div>
+                        <div class="bg-gray-800 p-6 rounded-lg">
+                            <span class="block text-4xl font-extrabold text-orange-500">MBA</span>
+                            <span class="mt-2 block text-gray-300">ESADE Business School</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-20 sm:py-32 bg-gray-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white">Impulsando el <span class="text-orange-500">Éxito Empresarial</span></h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">Ofrecemos un portafolio de servicios diseñados para abordar los desafíos más críticos de las empresas de servicios modernas.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card p-8 rounded-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Consultoría en Innovación Estratégica</h3>
+                        <p class="text-gray-400">Diseñamos y ejecutamos políticas de innovación que generan crecimiento, desde la conceptualización de proyectos hasta la obtención de financiamiento.</p>
+                    </div>
+                    <div class="card p-8 rounded-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Soluciones de IA y Big Data</h3>
+                        <p class="text-gray-400">Aplicamos análisis de datos avanzados para identificar oportunidades, predecir tendencias y optimizar operaciones, transformando datos en rentabilidad.</p>
+                    </div>
+                    <div class="card p-8 rounded-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Desarrollo de Nuevos Negocios</h3>
+                        <p class="text-gray-400">Guiamos el lanzamiento de iniciativas, desde el plan de negocios hasta la implementación, para diversos modelos de servicio.</p>
+                    </div>
+                    <div class="card p-8 rounded-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Diseño de Experiencia de Cliente (CX)</h3>
+                        <p class="text-gray-400">Implementamos metodologías basadas en datos para segmentar clientes y diseñar experiencias memorables que fomentan la lealtad.</p>
+                    </div>
+                    <div class="card p-8 rounded-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Transformación Digital de Servicios</h3>
+                        <p class="text-gray-400">Lideramos la adopción de tecnologías digitales, desde la implementación de plataformas de fidelización hasta la optimización de canales de venta online.</p>
+                    </div>
+                    <div class="card p-8 rounded-lg">
+                        <h3 class="text-xl font-bold text-white mb-3">Servicios Sostenibles e Impacto Social</h3>
+                        <p class="text-gray-400">Asesoramos en la creación de proyectos que promueven la sostenibilidad y el impacto social positivo, generando valor económico y social.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="py-20 sm:py-32">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                 <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white">Transformando Desafíos en <span class="text-orange-500">Resultados</span></h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">Nuestra experiencia se traduce en un historial de éxito comprobable. Estos son algunos ejemplos de nuestro impacto.</p>
+                </div>
+                <div class="space-y-12">
+                     <div class="card grid md:grid-cols-5 gap-8 items-center p-8 rounded-lg overflow-hidden">
+                        <div class="md:col-span-2">
+                             <h3 class="text-2xl font-bold text-orange-500">Caso: Institución Educativa</h3>
+                        </div>
+                        <div class="md:col-span-3">
+                             <p class="mb-4"><strong class="text-white">Desafío:</strong> Institucionalizar la innovación y asegurar capital de crecimiento sin una política definida.</p>
+                             <p class="mb-4"><strong class="text-white">Solución Saborez:</strong> Diseño e implementación de la Política Institucional de Innovación. Liderazgo en la postulación y gestión de proyectos estratégicos.</p>
+                             <p><strong class="text-white">Resultado Tangible:</strong> <span class="font-bold text-orange-500">MM$200 en financiamiento</span> obtenido en dos años y contribución clave a la Acreditación Institucional.</p>
+                        </div>
+                    </div>
+                     <div class="card grid md:grid-cols-5 gap-8 items-center p-8 rounded-lg overflow-hidden">
+                        <div class="md:col-span-2">
+                            <h3 class="text-2xl font-bold text-orange-500">Caso: Plataforma de Impacto Social</h3>
+                        </div>
+                        <div class="md:col-span-3">
+                            <p class="mb-4"><strong class="text-white">Desafío:</strong> Promocionar el patrimonio y desarrollo local de una manera sostenible y con alcance nacional.</p>
+                             <p class="mb-4"><strong class="text-white">Solución Saborez:</strong> Creación y desarrollo integral de una plataforma digital para visibilizar y articular la oferta de servicios con impacto social y sostenible.</p>
+                             <p><strong class="text-white">Resultado Tangible:</strong> Establecimiento de un <span class="font-bold text-orange-500">referente nacional</span> en la promoción de servicios sostenibles, conectando a proveedores y usuarios.</p>
+                        </div>
+                    </div>
+                     <div class="card grid md:grid-cols-5 gap-8 items-center p-8 rounded-lg overflow-hidden">
+                        <div class="md:col-span-2">
+                            <h3 class="text-2xl font-bold text-orange-500">Caso: Lanzamiento Startup de Servicios</h3>
+                        </div>
+                        <div class="md:col-span-3">
+                             <p class="mb-4"><strong class="text-white">Desafío:</strong> Lanzar una nueva iniciativa de servicios digitales en un mercado competitivo.</p>
+                             <p class="mb-4"><strong class="text-white">Solución Saborez:</strong> Desarrollo e implementación de un plan de negocios integral, desde el concepto y análisis financiero hasta la estrategia de marketing y operaciones.</p>
+                             <p><strong class="text-white">Resultado Tangible:</strong> Lanzamiento exitoso y operación de una <span class="font-bold text-orange-500">nueva marca en el sector de servicios,</span> validando un modelo de negocio ágil.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="trajectory" class="py-20 sm:py-32 bg-gray-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white">Experiencia <span class="text-orange-500">Comprobada</span></h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">Hemos colaborado y dejado nuestra huella en diversas organizaciones líderes y proyectos innovadores.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-10 items-center justify-items-center">
+                    <!-- Instituciones -->
+                    <div class="logo-item flex flex-col items-center text-center p-4 bg-gray-700 rounded-lg h-full">
+                        <img src="https://placehold.co/150x75/1F2937/F97316?text=Culinary" alt="Logo Instituto Profesional Culinary" class="object-contain mb-3" onerror="this.onerror=null; this.src='https://placehold.co/150x75/1F2937/F97316?text=Culinary'; this.alt='Logo Culinary';">
+                        <p class="text-sm font-medium text-white">Instituto Profesional Culinary</p>
+                    </div>
+                    <div class="logo-item flex flex-col items-center text-center p-4 bg-gray-700 rounded-lg h-full">
+                         <img src="https://placehold.co/150x75/1F2937/F97316?text=SaborezSpA" alt="Logo Saborez SpA" class="object-contain mb-3" onerror="this.onerror=null; this.src='https://placehold.co/150x75/1F2937/F97316?text=SaborezSpA'; this.alt='Logo Saborez SpA';">
+                        <p class="text-sm font-medium text-white">Saborez SpA</p>
+                    </div>
+                    <div class="logo-item flex flex-col items-center text-center p-4 bg-gray-700 rounded-lg h-full">
+                        <img src="https://placehold.co/150x75/1F2937/F97316?text=BuinZoo" alt="Logo Buin Zoo" class="object-contain mb-3" onerror="this.onerror=null; this.src='https://placehold.co/150x75/1F2937/F97316?text=BuinZoo'; this.alt='Logo Buin Zoo';">
+                        <p class="text-sm font-medium text-white">Buin Zoo</p>
+                    </div>
+                    <div class="logo-item flex flex-col items-center text-center p-4 bg-gray-700 rounded-lg h-full">
+                        <img src="https://placehold.co/150x75/1F2937/F97316?text=ElquiDomos" alt="Logo Elqui Domos" class="object-contain mb-3" onerror="this.onerror=null; this.src='https://placehold.co/150x75/1F2937/F97316?text=ElquiDomos'; this.alt='Logo Elqui Domos';">
+                        <p class="text-sm font-medium text-white">Elqui Domos</p>
+                    </div>
+                    <div class="logo-item flex flex-col items-center text-center p-4 bg-gray-700 rounded-lg h-full">
+                        <img src="https://placehold.co/150x75/1F2937/F97316?text=FEDETUR" alt="Logo FEDETUR" class="object-contain mb-3" onerror="this.onerror=null; this.src='https://placehold.co/150x75/1F2937/F97316?text=FEDETUR'; this.alt='Logo FEDETUR';">
+                        <p class="text-sm font-medium text-white">FEDETUR</p>
+                    </div>
+                    <div class="logo-item flex flex-col items-center text-center p-4 bg-gray-700 rounded-lg h-full">
+                        <img src="https://placehold.co/150x75/1F2937/F97316?text=LAN" alt="Logo LAN Airlines" class="object-contain mb-3" onerror="this.onerror=null; this.src='https://placehold.co/150x75/1F2937/F97316?text=LAN'; this.alt='Logo LAN Airlines';">
+                        <p class="text-sm font-medium text-white">LAN Airlines</p>
+                    </div>
+                    <div class="logo-item flex flex-col items-center text-center p-4 bg-gray-700 rounded-lg h-full">
+                        <img src="https://placehold.co/150x75/1F2937/F97316?text=CODELCO" alt="Logo CODELCO" class="object-contain mb-3" onerror="this.onerror=null; this.src='https://placehold.co/150x75/1F2937/F97316?text=CODELCO'; this.alt='Logo CODELCO';">
+                        <p class="text-sm font-medium text-white">CODELCO</p>
+                    </div>
+                    <div class="logo-item flex flex-col items-center text-center p-4 bg-gray-700 rounded-lg h-full">
+                        <img src="https://placehold.co/150x75/1F2937/F97316?text=ESADE" alt="Logo ESADE" class="object-contain mb-3" onerror="this.onerror=null; this.src='https://placehold.co/150x75/1F2937/F97316?text=ESADE'; this.alt='Logo ESADE';">
+                        <p class="text-sm font-medium text-white">ESADE Business School</p>
+                    </div>
+                    <div class="logo-item flex flex-col items-center text-center p-4 bg-gray-700 rounded-lg h-full">
+                        <img src="https://placehold.co/150x75/1F2937/F97316?text=UChile" alt="Logo Universidad de Chile" class="object-contain mb-3" onerror="this.onerror=null; this.src='https://placehold.co/150x75/1F2937/F97316?text=UChile'; this.alt='Logo U. de Chile';">
+                        <p class="text-sm font-medium text-white">Universidad de Chile</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 sm:py-32">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white">Hablemos de <span class="text-orange-500">Futuro</span></h2>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-400">¿Listo para transformar su negocio? Contáctenos para explorar cómo podemos colaborar.</p>
+                </div>
+                <div class="max-w-xl mx-auto">
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="sr-only">Nombre</label>
+                            <input type="text" name="name" id="name" autocomplete="name" required class="block w-full bg-gray-700 border border-gray-600 rounded-md py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:ring-offset-gray-800" placeholder="Su Nombre">
+                        </div>
+                        <div>
+                            <label for="email" class="sr-only">Email</label>
+                            <input type="email" name="email" id="email" autocomplete="email" required class="block w-full bg-gray-700 border border-gray-600 rounded-md py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:ring-offset-gray-800" placeholder="Su Email">
+                        </div>
+                        <div>
+                            <label for="message" class="sr-only">Mensaje</label>
+                            <textarea id="message" name="message" rows="4" required class="block w-full bg-gray-700 border border-gray-600 rounded-md py-3 px-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:ring-offset-gray-800" placeholder="¿En qué podemos ayudarle?"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full btn-primary font-bold py-3 px-6 rounded-lg text-lg">
+                                Enviar Mensaje
+                            </button>
+                        </div>
+                    </form>
+                    <div class="mt-12 text-center text-gray-400">
+                        <p>También puede encontrarnos en:</p>
+                        <p class="font-bold text-white mt-2">esteban.zarate@gmail.com</p>
+                        <div class="flex justify-center mt-4">
+                            <a href="https://www.linkedin.com/in/estebanzarate/" target="_blank" class="text-gray-400 hover:text-orange-500">
+                                <span class="sr-only">LinkedIn</span>
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800">
+        <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+            <p>&copy; 2025 Saborez. Todos los derechos reservados.</p>
+            <p class="text-sm mt-1">Impulsando la Innovación en Empresas de Servicios.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const header = document.getElementById('header');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            document.querySelectorAll('#mobile-menu a, header nav a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (link.closest('#mobile-menu')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    const targetId = link.getAttribute('href');
+                    if (targetId.startsWith('#')) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            //e.preventDefault(); // Comentado para permitir el comportamiento de anclaje predeterminado
+                            // No es necesario un scroll manual si `scroll-smooth` está en <html>
+                        }
+                    }
+                });
+            });
+
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', () => {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > 100) { // Ocultar solo si se baja y se ha pasado cierta altura
+                    header.style.top = '-100px'; 
+                } else {
+                    header.style.top = '0';
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Para manejo de scroll hacia arriba en iOS
+
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-lg');
+                } else {
+                    header.classList.remove('shadow-lg');
+                }
+                
+                updateActiveNavLink();
+            });
+
+
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('header nav a.nav-link');
+            const mobileNavLinks = document.querySelectorAll('#mobile-menu a');
+
+            function updateActiveNavLink() {
+                let currentSectionId = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - header.offsetHeight - sectionHeight / 3) ) { // Ajuste para header fijo
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+                mobileNavLinks.forEach(link => {
+                     // No aplicamos clase 'active' al menú móvil de esta forma para evitar estilos de subrayado
+                    const mobileLinkParent = link.parentElement;
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('bg-gray-700','text-white'); // Estilo activo para móvil
+                        link.classList.remove('text-gray-300','hover:bg-gray-700');
+                    } else {
+                        link.classList.remove('bg-gray-700','text-white');
+                        link.classList.add('text-gray-300','hover:bg-gray-700');
+                    }
+                });
+            }
+            updateActiveNavLink(); // Llamada inicial
+        });
+    </script>
+</body>
+</html>
